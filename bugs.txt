@@ -1,0 +1,8 @@
+> procedure GetAllProduk
+  > kode
+  > nama
+  > stok
+  > harga beli
+  > harga jual
+  > created at
+  > updated at
