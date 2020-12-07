@@ -150,7 +150,7 @@ delimiter / /
   create procedure InsertPemasok(
     in nama_p varchar(45),
     in email_p varchar(45),
-    in phone_p varchar(45),
+    in phone_p numeric,
     in alamat_p varchar(255)
   )
   begin
@@ -174,7 +174,7 @@ delimiter / /
   create procedure InsertPelanggan(
     in nama_p varchar(45),
     in email_p varchar(45),
-    in phone_p varchar(45),
+    in phone_p numeric,
     in alamat_p varchar(255)
   )
   begin
@@ -215,7 +215,7 @@ delimiter / /
         mid(createdAt, 6, 2),
         mid(createdAt, 3, 2),
         right(pemasok_id, 3)
-      )
+      );
   end
 / /
 delimiter / /
@@ -239,7 +239,7 @@ delimiter / /
         mid(createdAt, 6, 2),
         mid(createdAt, 3, 2),
         right(pelanggan_id, 3)
-      )
+      );
   end
 / /
 -- update data
