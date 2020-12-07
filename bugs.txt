@@ -1,8 +1,4 @@
-> procedure GetAllProduk
-  > kode
-  > nama
-  > stok
-  > harga beli
-  > harga jual
-  > created at
-  > updated at
+> update pembelian by id and produk_id
+> update penjualan by id and produk_id
+> delete pembelian by id and produk_id
+> delete penjualan by id and produk_id
