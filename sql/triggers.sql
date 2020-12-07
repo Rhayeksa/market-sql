@@ -11,7 +11,7 @@ delimiter / /
     set
       stok = stok + new.banyak
     where
-      id = new.id;
+      id = new.produk_id;
   end
 / /
 delimiter / /
@@ -25,7 +25,7 @@ delimiter / /
     set
       stok = stok - old.banyak
     where
-      id = old.id;
+      id = old.produk_id;
   end
 / /
 delimiter / /
@@ -39,7 +39,7 @@ delimiter / /
     set
       stok = stok - new.banyak
     where
-      id = new.id;
+      id = new.produk_id;
   end 
 / /
 delimiter / /
@@ -53,6 +53,6 @@ delimiter / /
     set
       stok = stok + old.banyak
     where
-      id = old.id;
+      id = old.produk_id;
   end
 / /
