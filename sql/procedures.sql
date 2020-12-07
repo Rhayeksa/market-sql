@@ -107,7 +107,17 @@ delimiter / /
 delimiter / /
   create procedure GetTransaksiPembelian()
   begin
-  -- todo
+    select
+      pembelian.id as 'ID',
+      pemasok.nama as 'Pemasok',
+      produk.nama as 'Produk',
+      pembelian.harga as 'Harga',
+      pembelian.banyak as 'Banyak',
+      pembelian.harga * pembelian.banyak as 'Total'
+    from
+      ((pembelian
+      inner join produk on pembelian.produk_id = produk.id)
+      inner join pemasok on pembelian.pemasok_id = pemasok.id);
   end
 / /
 delimiter / /
@@ -115,13 +125,34 @@ delimiter / /
     in id_p varchar(45)
   )
   begin
-  -- todo
+    select
+      pembelian.id as 'ID',
+      pemasok.nama as 'Pemasok',
+      produk.nama as 'Produk',
+      pembelian.harga as 'Harga',
+      pembelian.banyak as 'Banyak',
+      pembelian.harga * pembelian.banyak as 'Total'
+    from
+      ((pembelian
+      inner join produk on pembelian.produk_id = produk.id)
+      inner join pemasok on pembelian.pemasok_id = pemasok.id)
+    where pembelian.id = id_p;
   end
 / /
 delimiter / /
   create procedure GetTransaksiPenjualan()
   begin
-  -- todo
+    select
+      penjualan.id as 'ID',
+      pelanggan.nama as 'Pemasok',
+      produk.nama as 'Produk',
+      penjualan.harga as 'Harga',
+      penjualan.banyak as 'Banyak',
+      penjualan.harga * penjualan.banyak as 'Total'
+    from
+      ((penjualan
+      inner join produk on penjualan.produk_id = produk.id)
+      inner join pelanggan on penjualan.pemasok_id = pelanggan.id);
   end
 / /
 delimiter / /
@@ -129,7 +160,18 @@ delimiter / /
     in id_p varchar(45)
   )
   begin
-  -- todo
+    select
+      penjualan.id as 'ID',
+      pelanggan.nama as 'Pemasok',
+      produk.nama as 'Produk',
+      penjualan.harga as 'Harga',
+      penjualan.banyak as 'Banyak',
+      penjualan.harga * penjualan.banyak as 'Total'
+    from
+      ((penjualan
+      inner join produk on penjualan.produk_id = produk.id)
+      inner join pelanggan on penjualan.pemasok_id = pelanggan.id)
+    where penjualan.id = id_p;
   end
 / /
 -- insert data
@@ -143,7 +185,12 @@ delimiter / /
       produk
     set
       id = id_p,
-      nama = nama_p;
+      nama = nama_p,
+      createdAt = current_timestamp(),
+      updatedAt = current_timestamp();
+    select *
+    from produk
+    where id = id_p;
   end
 / /
 delimiter / /
@@ -161,11 +208,13 @@ delimiter / /
       email = email_p,
       phone = phone_p,
       alamat = alamat_p,
+      createdAt = current_timestamp(),
+      updatedAt = current_timestamp(),
       id = concat(
         'PMS',
-        mid(createdAt, 9, 2),
-        mid(createdAt, 6, 2),
         mid(createdAt, 3, 2),
+        mid(createdAt, 6, 2),
+        mid(createdAt, 9, 2),
         right(phone, 3)
       );
   end
@@ -185,13 +234,18 @@ delimiter / /
       email = email_p,
       phone = phone_p,
       alamat = alamat_p,
+      createdAt = current_timestamp(),
+      updatedAt = current_timestamp(),
       id = concat(
         'PEL',
-        mid(createdAt, 9, 2),
-        mid(createdAt, 6, 2),
         mid(createdAt, 3, 2),
+        mid(createdAt, 6, 2),
+        mid(createdAt, 9, 2),
         right(phone, 3)
       );
+    select *
+    from pelanggan
+    where id = id_p;
   end
 / /
 delimiter / /
@@ -209,7 +263,9 @@ delimiter / /
       produk_id = produk_id_p,
       harga = harga_p,
       banyak = banyak_p,
-      kode_pembelian = concat(
+      createdAt = current_timestamp(),
+      updatedAt = current_timestamp(),
+      id = concat(
         'PMB',
         mid(createdAt, 9, 2),
         mid(createdAt, 6, 2),
@@ -233,6 +289,8 @@ delimiter / /
       produk_id = produk_id_p,
       harga = harga_p,
       banyak = banyak_p,
+      createdAt = current_timestamp(),
+      updatedAt = current_timestamp(),
       id = concat(
         'PNJ',
         mid(createdAt, 9, 2),
@@ -319,7 +377,8 @@ delimiter / /
       where
         id = id_p;
     end if;
-  end / /
+  end
+/ /
 delimiter / /
   create procedure DeletePemasokById(
     in id_p varchar(45)
