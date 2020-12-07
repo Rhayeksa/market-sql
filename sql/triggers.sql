@@ -11,7 +11,7 @@ delimiter / /
     set
       stok = stok + new.banyak
     where
-      kode_produk = new.kode_produk;
+      id = new.id;
   end
 / /
 delimiter / /
@@ -25,7 +25,7 @@ delimiter / /
     set
       stok = stok - old.banyak
     where
-      kode_produk = old.kode_produk;
+      id = old.id;
   end
 / /
 delimiter / /
@@ -39,11 +39,11 @@ delimiter / /
     set
       stok = stok - new.banyak
     where
-      kode_produk = new.kode_produk;
+      id = new.id;
   end 
 / /
 delimiter / /
-  create trigger after_penjualan_delete
+  create trigger after_delete_penjualan
   after
     delete
       on penjualan for each row
@@ -53,6 +53,6 @@ delimiter / /
     set
       stok = stok + old.banyak
     where
-      kode_produk = old.kode_produk;
+      id = old.id;
   end
 / /
