@@ -287,7 +287,6 @@ delimiter / /
   create procedure InsertTransaksiPenjualan(
     in pelanggan_id_p varchar(45),
     in produk_id_p varchar(45),
-    in harga_p int,
     in banyak_p int
   )
   begin
@@ -296,10 +295,10 @@ delimiter / /
     set
       pelanggan_id = pelanggan_id_p,
       produk_id = produk_id_p,
-      harga = harga_p,
       banyak = banyak_p,
       createdAt = current_timestamp(),
       updatedAt = current_timestamp(),
+      harga = (select harga + 1000 from pembelian where produk_id = produk_id_p order by createdAt desc limit 1),
       id = concat(
         'PNJ',
         mid(createdAt, 9, 2),
