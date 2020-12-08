@@ -11,8 +11,8 @@ create table produk (
 create table pemasok (
     id varchar(45) not null,
     nama varchar(45) not null,
-    email varchar(45) not null,
-    phone numeric not null,
+    email varchar(45) not null unique,
+    phone numeric not null unique,
     alamat varchar(255) not null,
     createdAt datetime not null default current_timestamp(),
     updatedAt datetime not null default current_timestamp(),
@@ -21,8 +21,8 @@ create table pemasok (
 create table pelanggan (
     id varchar(45) not null,
     nama varchar(45) not null,
-    email varchar(45) not null,
-    phone numeric not null,
+    email varchar(45) not null unique,
+    phone numeric not null unique,
     alamat varchar(255) not null,
     createdAt datetime not null default current_timestamp(),
     updatedAt datetime not null default current_timestamp(),
