@@ -217,6 +217,10 @@ delimiter / /
         mid(createdAt, 9, 2),
         right(phone, 3)
       );
+    select *
+    from pemasok
+    order by createdAt desc
+    limit 1;
   end
 / /
 delimiter / /
@@ -245,7 +249,8 @@ delimiter / /
       );
     select *
     from pelanggan
-    where id = id_p;
+    order by createdAt desc
+    limit 1;
   end
 / /
 delimiter / /
@@ -272,6 +277,10 @@ delimiter / /
         mid(createdAt, 3, 2),
         right(pemasok_id, 3)
       );
+    select *
+    from pembelian
+    order by createdAt desc
+    limit 1;
   end
 / /
 delimiter / /
@@ -298,6 +307,10 @@ delimiter / /
         mid(createdAt, 3, 2),
         right(pelanggan_id, 3)
       );
+    select *
+    from penjualan
+    order by createdAt desc
+    limit 1;
   end
 / /
 -- update data
